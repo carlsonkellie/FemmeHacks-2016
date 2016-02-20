@@ -14,7 +14,7 @@ import com.firebase.client.Firebase;
 /**
  * Created by kelliecarlson on 2/20/16.
  */
-public class FratMainScreen extends AppCompatActivity{
+public class FratMainScreen extends AppCompatActivity {
 
     Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
     String universityName = "";
@@ -49,22 +49,20 @@ public class FratMainScreen extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    public void inTheNews (View view) {
+    public void inTheNews(View view) {
         Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
         search.putExtra(SearchManager.QUERY, universityName + " " + fraternityName);
         startActivity(search);
     }
 
-    public void meetUp (View view) {
+    public void meetUp(View view) {
         Intent intent = new Intent(this, MeetUpForum.class);
         startActivity(intent);
     }
 
-    public void reviewsComments (View view) {
+    public void reviewsComments(View view) {
         Intent intent = new Intent(this, ReviewCommentForum.class);
         startActivity(intent);
     }
 
 }
-
-

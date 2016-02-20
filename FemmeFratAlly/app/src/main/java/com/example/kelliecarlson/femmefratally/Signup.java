@@ -60,7 +60,7 @@ public class Signup extends AppCompatActivity{
             public void onSuccess(Map<String, Object> result) {
                 System.out.println("Successfully created user account with uid: " + result.get("uid"));
                 //Segue back to the login screen
-                Intent intent = new Intent(MainActivity.this, LoginScreen.class);
+                Intent intent = new Intent(Signup.this, LoginScreen.class);
                 startActivity(intent);
             }
             @Override

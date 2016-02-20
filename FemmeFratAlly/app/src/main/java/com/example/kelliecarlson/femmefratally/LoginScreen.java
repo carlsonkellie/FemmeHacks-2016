@@ -55,7 +55,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onAuthenticated(AuthData authData) {
                 System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                Intent intent = new Intent(this, FindASchool.class);
+                Intent intent = new Intent(LoginScreen.this, FindASchool.class);
                 startActivity(intent);
             }
             @Override

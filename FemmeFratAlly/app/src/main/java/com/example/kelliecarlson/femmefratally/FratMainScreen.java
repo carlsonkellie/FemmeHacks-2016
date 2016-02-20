@@ -2,17 +2,13 @@ package com.example.kelliecarlson.femmefratally;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
-import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 
 
 /**
@@ -29,31 +25,7 @@ public class FratMainScreen extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.frat_main_screen);
-
     }
-
-    public void inTheNews (View view) {
-        Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
-        search.putExtra(SearchManager.QUERY, universityName + fraternityName);
-        startActivity(search);
-    }
-
-    public void meetUp (View view) {
-        Intent intent = new Intent(this, MeetUpForum.class);
-        startActivity(intent);
-    }
-
-    public void reviewsComments (View view) {
-        Intent intent = new Intent(this, ReviewCommentForum.class);
-        startActivity(intent);
-    }
-
-}
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,31 +49,29 @@ public class FratMainScreen extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    public void login(View view){
-        TextView username = (TextView) findViewById(R.id.editText);
-        TextView password = (TextView) findViewById(R.id.editText2);
-        String user = username.getText().toString();
-        String pass = password.getText().toString();
-        myFirebaseRef.authWithPassword(user, pass, new Firebase.AuthResultHandler() {
-            @Override
-            public void onAuthenticated(AuthData authData) {
-                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
-                Intent intent = new Intent(LoginScreen.this, FindASchool.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onAuthenticationError(FirebaseError firebaseError) {
-                // there was an error
-            }
-        });
-
-
+    public void inTheNews (View view) {
+        Intent search = new Intent(Intent.ACTION_WEB_SEARCH);
+        search.putExtra(SearchManager.QUERY, universityName + " " + fraternityName);
+        startActivity(search);
     }
 
-    public void signup(View view) {
-        Intent intent = new Intent(this, Signup.class);
+    public void meetUp (View view) {
+        Intent intent = new Intent(this, MeetUpForum.class);
         startActivity(intent);
     }
+
+    public void reviewsComments (View view) {
+        Intent intent = new Intent(this, ReviewCommentForum.class);
+        startActivity(intent);
+    }
+
+}
+
+
+
+
+
+
+
 
 }

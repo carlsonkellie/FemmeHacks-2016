@@ -8,17 +8,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 public class LoginScreen extends AppCompatActivity {
+
+    Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-        setContentView(R.layout.activity_login);
-        Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
-        String usersRef = ref.child("users");
+        setContentView(R.layout.login_screen);
 
     }
 
@@ -49,6 +51,19 @@ public class LoginScreen extends AppCompatActivity {
         TextView password = (TextView) findViewById(R.id.editText2);
         String user = username.getText().toString();
         String pass = password.getText().toString();
+        myFirebaseRef.authWithPassword(user, pass, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+                Intent intent = new Intent(this, FindASchool.class);
+                startActivity(intent);
+            }
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                // there was an error
+            }
+        });
+
 
     }
 

@@ -1,17 +1,30 @@
 package com.example.kelliecarlson.femmefratally;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
+import java.util.Map;
+
+import static android.support.v4.app.ActivityCompat.startActivity;
 
 /**
  * Created by Jaimie on 2/20/2016.
  */
-public class Signup {
+public class Signup extends AppCompatActivity{
+    Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Firebase.setAndroidContext(this);
         setContentView(R.layout.signup);
     }
 
@@ -37,6 +50,24 @@ public class Signup {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void signup (View view) {
+        EditText username = (EditText) findViewById(R.id.editText5);
+        EditText password = (EditText) findViewById(R.id.editText4);
 
+        myFirebaseRef.createUser(username.getText().toString(), password.getText().toString(), new Firebase.ValueResultHandler<Map<String, Object>>() {
+            @Override
+            public void onSuccess(Map<String, Object> result) {
+                System.out.println("Successfully created user account with uid: " + result.get("uid"));
+                //Segue back to the login screen
+                Intent intent = new Intent(MainActivity.this, LoginScreen.class);
+                startActivity(intent);
+            }
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                // there was an error
+            }
+        });
+    }
 }
 

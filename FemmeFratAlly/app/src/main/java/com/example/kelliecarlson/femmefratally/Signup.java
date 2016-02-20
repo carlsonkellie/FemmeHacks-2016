@@ -50,7 +50,6 @@ public class Signup extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void signup (View view) {
         EditText username = (EditText) findViewById(R.id.editText5);
         EditText password = (EditText) findViewById(R.id.editText4);

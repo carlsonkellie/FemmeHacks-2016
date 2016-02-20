@@ -3,32 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/editText11"
-        android:layout_marginTop="97dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="30dp"
-        android:layout_toRightOf="@+id/textView13"
-        android:layout_toEndOf="@+id/textView13"
-        android:layout_marginLeft="10dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Review:"
         android:id="@+id/textView13"
-        android:layout_alignBottom="@+id/editText11"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/editText11"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginTop="83dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/ratingBar2"
+        android:layout_alignRight="@+id/button15"
+        android:layout_alignEnd="@+id/button15" />
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -41,11 +26,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Post"
+        android:text="Post!"
         android:id="@+id/button14"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/editText11"
-        android:layout_alignEnd="@+id/editText11" />
+        android:layout_alignTop="@+id/button15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -55,4 +40,41 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Date:"
+        android:id="@+id/textView14"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13"
+        android:layout_alignRight="@+id/textView13"
+        android:layout_marginBottom="50dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:id="@+id/editText6"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_alignRight="@+id/editText11"
+        android:layout_alignEnd="@+id/editText11"
+        android:layout_alignLeft="@+id/editText11"
+        android:layout_alignStart="@+id/editText11" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText11"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/button15"
+        android:layout_toEndOf="@+id/button15"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
+
 </RelativeLayout>

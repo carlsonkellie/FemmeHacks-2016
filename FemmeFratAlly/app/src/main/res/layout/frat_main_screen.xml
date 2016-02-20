@@ -38,12 +38,9 @@
         android:id="@+id/button6"
         android:layout_below="@+id/button5"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" /><<<<<<< HEAD
         android:layout_marginTop="42dp"
-        android:onClick="meetUp"/>
-=======
-        android:layout_marginTop="37dp" />
->>>>>>> origin/master
+        android:onClick="meetUp" />
+
 
     <Button
         android:layout_width="wrap_content"
@@ -53,7 +50,7 @@
         android:onClick="reviewsComments"
         android:layout_below="@+id/button6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="42dp" />
 
     <Button
         android:layout_width="wrap_content"

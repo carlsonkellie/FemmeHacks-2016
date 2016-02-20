@@ -66,12 +66,3 @@ public class FratMainScreen extends AppCompatActivity{
     }
 
 }
-
-
-
-
-
-
-
-
-}

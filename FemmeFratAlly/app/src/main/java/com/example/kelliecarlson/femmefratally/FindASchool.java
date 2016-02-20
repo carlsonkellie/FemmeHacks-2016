@@ -10,10 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,29 +27,18 @@ public class FindASchool extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.find_a_school);
 
+
+        List<Firebase> arrayList = myFirebaseRef.child("colleges");
         final ListView listView = (ListView) findViewById(R.id.listView);
-        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, arrayList);
         listView.setAdapter(adapter);
-        new Firebase("https://blistering-torch-4059/")
-                .addChildEventListener(new ChildEventListener() {
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add((String) dataSnapshot.child("colleges").getValue());
-                    }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        adapter.remove((String) dataSnapshot.child("colleges").getValue());
-                    }
-
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    }
-
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                    }
-
-                    public void onCancelled(FirebaseError firebaseError) {
-                    }
-                });
-    }
+            }
+        }
+    });
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

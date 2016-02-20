@@ -38,7 +38,7 @@
         android:id="@+id/button6"
         android:layout_below="@+id/button5"
         android:layout_centerHorizontal="true"
-<<<<<<< HEAD
+        android:layout_marginTop="20dp" /><<<<<<< HEAD
         android:layout_marginTop="42dp"
         android:onClick="meetUp"/>
 =======
@@ -50,12 +50,10 @@
         android:layout_height="wrap_content"
         android:text="Reviews/Concerns"
         android:id="@+id/button7"
+        android:onClick="reviewsComments"
         android:layout_below="@+id/button6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:onClick="reviewsComments"/>
+        android:layout_marginTop="20dp" />
 
     <Button
         android:layout_width="wrap_content"

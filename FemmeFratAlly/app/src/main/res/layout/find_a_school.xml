@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:layout_width="388dp"
-        android:layout_height="523dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:nestedScrollingEnabled="false">
 
         <TextView
@@ -18,7 +18,7 @@
             android:textStyle="bold"
             android:singleLine="true"
             android:elegantTextHeight="false"
-            android:layout_marginTop="59dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -38,7 +38,9 @@
             android:layout_height="400dp"
             android:id="@+id/listView"
             android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

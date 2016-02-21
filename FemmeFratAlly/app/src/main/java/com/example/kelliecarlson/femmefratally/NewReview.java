@@ -39,7 +39,7 @@ public class NewReview extends AppCompatActivity{
         final String s = extrasBundle.getString("college");
         final String f = extrasBundle.getString("fraternity");
 
-        String newURL = "https://blistering-torch-4059.firebaseio.com/colleges/" + s +"/" + f;
+        String newURL = "https://blistering-torch-4059.firebaseio.com/colleges/" + s +"/frats/" + f;
 
         Firebase postRef = new Firebase(newURL);
 

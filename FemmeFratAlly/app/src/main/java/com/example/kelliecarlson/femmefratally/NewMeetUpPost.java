@@ -30,7 +30,6 @@ public class NewMeetUpPost extends AppCompatActivity{
     }
 
     public void post(View view){
-
         TextView when = (TextView) findViewById(R.id.editText7);
         TextView locat = (TextView) findViewById(R.id.editText8);
         TextView dest = (TextView) findViewById(R.id.editText9);
@@ -46,6 +45,11 @@ public class NewMeetUpPost extends AppCompatActivity{
 
         MeetUpPost stuff = new MeetUpPost(whent, locate, desti, othert, date);
 
+        String newURL = "https://blistering-torch-4059.firebaseio.com/colleges/" + universityName +"/Meetups";
+
+        Firebase postRef = new Firebase(newURL);
+
+        postRef.push().setValue(stuff);
 
 
         Intent intent = new Intent(this, MeetUpForum.class);

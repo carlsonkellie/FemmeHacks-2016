@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.client.Firebase;
 
@@ -17,14 +18,21 @@ import com.firebase.client.Firebase;
 public class FratMainScreen extends AppCompatActivity {
 
     Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
-    String universityName = "";
-    String fraternityName = "";
+    Intent schoolFratInfo = getIntent();
+    public String universityName = schoolFratInfo.getStringExtra("college");
+    public String fraternityName = schoolFratInfo.getStringExtra("frat");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.frat_main_screen);
+
+        TextView schoolTextElement = (TextView) findViewById(R.id.textView15);
+        schoolTextElement.setText(universityName);
+        TextView fratTextElement = (TextView) findViewById(R.id.textView8);
+        fratTextElement.setText(fraternityName);
+
     }
 
     @Override

@@ -3,11 +3,9 @@ package com.example.kelliecarlson.femmefratally;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
+import java.util.Calendar;
 import com.firebase.client.Firebase;
 
 /**
@@ -39,6 +37,11 @@ public class NewMeetUpPost extends AppCompatActivity{
         String locate = locat.getText().toString();
         String desti = dest.getText().toString();
         String othert = other.getText().toString();
+
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date date = calendar.getTime();
+
+        MeetUpPost stuff = new MeetUpPost(whent, locate, desti, othert, date);
 
         Intent intent = new Intent(this, MeetUpForum.class);
         startActivity(intent);

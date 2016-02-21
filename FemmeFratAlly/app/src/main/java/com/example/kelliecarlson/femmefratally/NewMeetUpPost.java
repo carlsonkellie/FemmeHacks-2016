@@ -13,6 +13,9 @@ import com.firebase.client.Firebase;
  */
 public class NewMeetUpPost extends AppCompatActivity{
     Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
+    Intent schoolFratInfo = getIntent();
+    public String universityName = schoolFratInfo.getStringExtra("college");
+    public String fraternityName = schoolFratInfo.getStringExtra("frat");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

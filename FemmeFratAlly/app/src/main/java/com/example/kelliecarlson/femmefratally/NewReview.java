@@ -29,10 +29,7 @@ public class NewReview extends AppCompatActivity{
 
     public void post(View view){
         TextView revi = (TextView) findViewById(R.id.editText11);
-
         String review = revi.getText().toString();
-
-
         Intent intent = new Intent(this, ReviewCommentForum.class);
         startActivity(intent);
     }

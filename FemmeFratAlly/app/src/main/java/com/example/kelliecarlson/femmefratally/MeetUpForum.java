@@ -28,12 +28,17 @@ public class MeetUpForum extends AppCompatActivity {
 
     Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
 
+
+    public String college = "UPenn";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.meet_up_forum);
 
+        Intent intent = getIntent();
+        college = intent.getStringExtra("college");
 
         final ListView listView = (ListView) findViewById(R.id.listView2);
 
@@ -47,14 +52,15 @@ public class MeetUpForum extends AppCompatActivity {
         // Use Firebase to populate the list.
         Firebase.setAndroidContext(this);
 
-        new Firebase("https://blistering-torch-4059.firebaseio.com/colleges")
+        String newURL = "https://blistering-torch-4059.firebaseio.com/colleges/" + college;
+        new Firebase(newURL)
                 .addChildEventListener(new ChildEventListener() {
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add((String) dataSnapshot.child("").getValue());
+                        adapter.add((String) dataSnapshot.child("Meetups").getValue());
                     }
 
                     public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        adapter.remove((String) dataSnapshot.child("").getValue());
+                        adapter.remove((String) dataSnapshot.child("Meetups").getValue());
                     }
 
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
@@ -66,19 +72,6 @@ public class MeetUpForum extends AppCompatActivity {
                     public void onCancelled(FirebaseError firebaseError) {
                     }
                 });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                final String item = (String) parent.getItemAtPosition(position);
-                Intent intentBundle = new Intent(MeetUpForum.this, FindAFrat.class);
-                Bundle bundle = new Bundle();
-                //THIS BUNDLE WILL CONTAIN THE SCHOOL NAME
-                bundle.putString("college", item);
-                intentBundle.putExtras(bundle);
-                startActivity(intentBundle);
-            }
-        });
 
     }
 
@@ -109,6 +102,9 @@ public class MeetUpForum extends AppCompatActivity {
 
     public void writeNewPost(View view) {
         Intent intent = new Intent(this, NewMeetUpPost.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("college", college);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

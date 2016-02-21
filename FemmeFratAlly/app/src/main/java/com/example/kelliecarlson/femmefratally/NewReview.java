@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import java.util.Calendar;
 import com.firebase.client.Firebase;
@@ -32,7 +33,11 @@ public class NewReview extends AppCompatActivity{
 
     public void post(View view){
         TextView revi = (TextView) findViewById(R.id.editText11);
-        String review = revi.getText().toString();
+        RatingBar stars = (RatingBar) findViewById(R.id.ratingBar2);
+        String myReview = revi.getText().toString();
+        int star = stars.getNumStars();
+
+        MyReview review = new MyReview(myReview, star);
 
         Intent intentExtras = getIntent();
         Bundle extrasBundle = intentExtras.getExtras();

@@ -53,15 +53,28 @@ public class ReviewCommentForum extends AppCompatActivity{
 
         String newURL = "https://blistering-torch-4059.firebaseio.com/colleges/" + college + "/frats/" + fraternity;
 
+        double sum = 0;
+        double count = 0;
+        double average = 0;
         new Firebase(newURL)
                 .addChildEventListener(new ChildEventListener() {
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        MeetUpPost post = (MeetUpPost) dataSnapshot.child("Meetups").getValue();
+                        MyReview post = (MyReview) dataSnapshot.child("frats").getValue();
+                        String s = post.getReview();
+                        double x = post.getStars();
+                        sum +=x;
+                        count +=1;
+                        average = sum/count;
+                        adapter.add(s);
                     }
 
                     public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        adapter.remove((String) dataSnapshot.child("Meetups").getValue());
-                    }
+                        MyReview post = (MyReview) dataSnapshot.child("frats").getValue();
+                        String s = post.getReview();
+                        double x = post.getStars();
+                        sum -=x;
+                        count -=1;
+                        adapter.remove(s);                    }
 
                     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                     }
@@ -73,6 +86,9 @@ public class ReviewCommentForum extends AppCompatActivity{
                     }
                 });
 
+
+        RatingBar stars = (RatingBar) findViewById(R.id.ratingBar3);
+        stars.setValue((int) average);
     }
 
     @Override

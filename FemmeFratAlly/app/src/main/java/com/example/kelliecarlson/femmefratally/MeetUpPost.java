@@ -17,7 +17,6 @@ public class MeetUpPost {
         this.dest = dest;
         this.other = other;
         this.date = date;
-
     }
 
     public String getWhen() {

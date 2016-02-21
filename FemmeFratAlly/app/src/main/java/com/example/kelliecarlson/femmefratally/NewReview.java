@@ -44,7 +44,7 @@ public class NewReview extends AppCompatActivity{
         Firebase postRef = new Firebase(newURL);
 
         postRef.push().setValue(review);
-        
+
         Intent intent = new Intent(this, ReviewCommentForum.class);
         startActivity(intent);
     }

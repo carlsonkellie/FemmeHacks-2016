@@ -17,6 +17,8 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.util.Calendar;
+
 /**
  * Created by kelliecarlson on 2/20/16.
  */
@@ -30,12 +32,14 @@ public class MeetUpForum extends AppCompatActivity {
 
 
     public String college = "UPenn";
-
+    public java.util.Date currentDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.meet_up_forum);
+        Calendar calendar = Calendar.getInstance();
+        currentDate = calendar.getTime();
 
         Intent intent = getIntent();
         college = intent.getStringExtra("college");
@@ -56,7 +60,10 @@ public class MeetUpForum extends AppCompatActivity {
         new Firebase(newURL)
                 .addChildEventListener(new ChildEventListener() {
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add((String) dataSnapshot.child("Meetups").getValue());
+                        MeetUpPost post = (MeetUpPost) dataSnapshot.child("Meetups").getValue();
+                        if (currentDate.getTime() - post.getDate().getTime() < 86400*1000) {
+                            adapter.add((String) dataSnapshot.child("Meetups").getValue());
+                        }
                     }
 
                     public void onChildRemoved(DataSnapshot dataSnapshot) {

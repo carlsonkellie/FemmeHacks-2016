@@ -51,7 +51,6 @@ public class NewMeetUpPost extends AppCompatActivity{
 
         postRef.push().setValue(stuff);
 
-
         Intent intent = new Intent(this, MeetUpForum.class);
         startActivity(intent);
 

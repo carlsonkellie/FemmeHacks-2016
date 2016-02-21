@@ -51,9 +51,7 @@ public class NewMeetUpPost extends AppCompatActivity{
         Firebase postRef = new Firebase(newURL);
 
         postRef.push().setValue(stuff);
-
-<<<<<<< HEAD
-=======
+        
         Intent intentExtras = getIntent();
         Bundle extrasBundle = intentExtras.getExtras();
         final String s = extrasBundle.getString("college");
@@ -64,7 +62,6 @@ public class NewMeetUpPost extends AppCompatActivity{
 
         postRefs.push().setValue(stuff);
         
->>>>>>> origin/master
         Intent intent = new Intent(this, MeetUpForum.class);
         startActivity(intent);
 

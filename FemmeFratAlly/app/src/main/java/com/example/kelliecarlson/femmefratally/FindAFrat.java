@@ -46,15 +46,15 @@ package com.example.kelliecarlson.femmefratally;
             Bundle extrasBundle = intentExtras.getExtras();
             final String s = extrasBundle.getString("college");
 
-            String newURL = "https://blistering-torch-4059.firebaseio.com/colleges";
+            String newURL = "https://blistering-torch-4059.firebaseio.com/colleges/" + s;
             new Firebase(newURL)
                     .addChildEventListener(new ChildEventListener() {
                         public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                            adapter.add((String) dataSnapshot.child(s).getValue());
+                            adapter.add((String) dataSnapshot.child("frats").getValue());
                         }
 
                         public void onChildRemoved(DataSnapshot dataSnapshot) {
-                            adapter.remove((String) dataSnapshot.child(s).getValue());
+                            adapter.remove((String) dataSnapshot.child("frats").getValue());
                         }
 
                         public void onChildChanged(DataSnapshot dataSnapshot, String s) {

@@ -6,9 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.ChildEventListener;
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
@@ -21,7 +26,6 @@ public class MeetUpForum extends AppCompatActivity {
     //access from database, show them, delete them after 24h
     //look at timestamp
 
-
     Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
 
     @Override
@@ -29,6 +33,52 @@ public class MeetUpForum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
         setContentView(R.layout.meet_up_forum);
+
+
+        final ListView listView = (ListView) findViewById(R.id.listView2);
+
+        // Create a new Adapter
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, android.R.id.text1);
+
+        // Assign adapter to ListView
+        listView.setAdapter(adapter);
+
+        // Use Firebase to populate the list.
+        Firebase.setAndroidContext(this);
+
+        new Firebase("https://blistering-torch-4059.firebaseio.com/colleges")
+                .addChildEventListener(new ChildEventListener() {
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        adapter.add((String) dataSnapshot.child("").getValue());
+                    }
+
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        adapter.remove((String) dataSnapshot.child("").getValue());
+                    }
+
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    }
+
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    }
+
+                    public void onCancelled(FirebaseError firebaseError) {
+                    }
+                });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                final String item = (String) parent.getItemAtPosition(position);
+                Intent intentBundle = new Intent(MeetUpForum.this, FindAFrat.class);
+                Bundle bundle = new Bundle();
+                //THIS BUNDLE WILL CONTAIN THE SCHOOL NAME
+                bundle.putString("college", item);
+                intentBundle.putExtras(bundle);
+                startActivity(intentBundle);
+            }
+        });
 
     }
 

@@ -43,6 +43,8 @@ public class NewMeetUpPost extends AppCompatActivity{
 
         MeetUpPost stuff = new MeetUpPost(whent, locate, desti, othert, date);
 
+
+
         Intent intent = new Intent(this, MeetUpForum.class);
         startActivity(intent);
 

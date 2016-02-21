@@ -65,11 +65,20 @@ public class FratMainScreen extends AppCompatActivity {
 
     public void meetUp(View view) {
         Intent intent = new Intent(this, MeetUpForum.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("college", universityName);
+        bundle.putString("fraternity", fraternityName);
+        intent.putExtras(bundle);
         startActivity(intent);
+
     }
 
     public void reviewsComments(View view) {
         Intent intent = new Intent(this, ReviewCommentForum.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("college", universityName);
+        bundle.putString("fraternity", fraternityName);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

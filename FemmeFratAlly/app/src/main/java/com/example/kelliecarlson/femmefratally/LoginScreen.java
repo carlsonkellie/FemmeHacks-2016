@@ -16,6 +16,7 @@ public class LoginScreen extends AppCompatActivity {
 
     Firebase myFirebaseRef = new Firebase("https://blistering-torch-4059.firebaseio.com/");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
